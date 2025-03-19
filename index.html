@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional CV Template</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-color: #1f2937;
+            --bg-color: #f3f4f6;
+            --white: #ffffff;
+            --column-width: 350px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: var(--column-width) 1fr;
+            min-height: 100vh;
+        }
+
+        .left-column, .right-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .left-column {
+            background: url('background-left-gray-waves.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .header-left, .header-right {
+            background-color: var(--primary-color);
+            color: var(--white);
+            height: 350px;
+        }
+
+        .header-left {
+            width: var(--column-width);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-right {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .header-right h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-right p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content-left, .content-right {
+            background-color: var(--white);
+            padding: 2rem;
+            flex: 1;
+        }
+
+        .content-left {
+            background: transparent;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+        }
+
+        .contact-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .bullet-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .bullet-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .qualification-item {
+            margin-bottom: 1rem;
+        }
+
+        .qualification-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .header-left, .header-right {
+                height: auto;
+            }
+
+            .header-right {
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .profile-image {
+                position: static;
+                transform: none;
+                height: 250px;
+            }
+
+            .logo {
+                margin: 0 auto 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-column">
+            <header class="header-left">
+                <img src="foto.png" alt="" class="profile-image">
+            </header>
+            <div class="content-left">
+                <section class="section">
+                    <h2 class="section-title">Contact</h2>
+                    <div id="contact-info">
+                        <!-- Contact items will be inserted here -->
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">About me</h2>
+                    <p id="about-description"></p>
+                    <ul id="about-points" class="bullet-list">
+                        <!-- About me points will be inserted here -->
+                    </ul>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Diploma</h2>
+                    <div id="diploma" class="qualification-item">
+                        <!-- Diploma info will be inserted here -->
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <header class="header-right">
+                <img src="https://devtech.pro/images/logo/logo.svg" alt="DevTech Pro Logo" class="logo">
+                <h1 id="name"></h1>
+                <p id="title"></p>
+                <p id="subtitle"></p>
+            </header>
+            <div class="content-right">
+                <section class="section">
+                    <h2 class="section-title">Focal points</h2>
+                    <ul id="focal-points" class="bullet-list">
+                        <!-- Focal points will be inserted here -->
+                    </ul>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Qualifications</h2>
+                    <ul id="qualifications" class="bullet-list">
+                        <!-- Qualifications will be inserted here -->
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample JSON data - This can be loaded from an external file
+        const cvData = {
+            name: "Hannes Lehmann",
+            title: "Integration Expert and Senior Solution Architect (Tibco/MuleSoft)",
+            subtitle: "Service Oriented Architectures and API Lifecycle Management",
+            contact: {
+                email: "hannes@devtech.pro",
+                website: "devtech.pro"
+            },
+            aboutMe: {
+                description: "IT consultant for over 18 years with a holistic view from requirements analysis and documentation to the operation of applications and services:",
+                points: [
+                    "Requirements management including conducting workshops",
+                    "Interface between departments and development throughout the entire project cycle",
+                    "Automation and digitalization of process flows",
+                    "Migration/transformation to service-oriented architectures",
+                    "Planning and concept creation of migration and (automated) test strategies",
+                    "Control of developers, operations teams and service providers within the framework of projects and operations",
+                    "Outsourcing/nearshoring L1 and L2 support",
+                    "Department and team management"
+                ]
+            },
+            focalPoints: [
+                "Requirements engineering and business analysis of actual/target states (UML), including creation of obligations and specifications",
+                "Automation and digitalization of business processes (BPM)",
+                "Execution and implementation of prototypes (PoC) for requirements verification",
+                "Development of cost optimization models in relation to lean business or reducing the complexity of code",
+                "Documentation and concept creation",
+                "Enterprise Application Integration (EAI)",
+                "Interface design, especially API Driven Design (API-Led)",
+                "Service-oriented architectures (SOA, ESB, APIs, microservices) and transfer to API-ready system landscapes",
+                "Migration planning and support (CMO/FMO)",
+                "Application Lifecycle Management (ALM), including monitoring and logging concepts",
+                "Cost optimization of cloud platforms",
+                "IT service management processes design, introduction, implementation and management (KPIs)"
+            ],
+            qualifications: [
+                "MuleSoft Certified Developer - Level 1",
+                "IREB® Certified Professional for Requirements Engineering (Foundation Level)",
+                "ISTQB® Certified Tester (Foundation Level)",
+                "ITIL® V2 and V3 (Foundation Level)"
+            ],
+            diploma: {
+                title: "BACHELOR OF COMPUTERSCIENCE",
+                project: "Development of a web application according to the principles of Extreme Programming (XP)",
+                year: "2005"
+            }
+        };
+
+        // Function to populate the CV template with data
+        function populateCV(data) {
+            // Header
+            document.getElementById('name').textContent = data.name;
+            document.getElementById('title').textContent = data.title;
+            document.getElementById('subtitle').textContent = data.subtitle;
+
+            // Contact
+            const contactInfo = document.getElementById('contact-info');
+            contactInfo.innerHTML = `
+                <div class="contact-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <a href="mailto:${data.contact.email}">${data.contact.email}</a>
+                </div>
+                <div class="contact-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                    </svg>
+                    <a href="https://${data.contact.website}" target="_blank">${data.contact.website}</a>
+                </div>
+            `;
+
+            // About Me
+            document.getElementById('about-description').textContent = data.aboutMe.description;
+            document.getElementById('about-points').innerHTML = data.aboutMe.points
+                .map(point => `<li>${point}</li>`)
+                .join('');
+
+            // Diploma
+            document.getElementById('diploma').innerHTML = `
+                <h4>${data.diploma.title}</h4>
+                <p>Final project: "${data.diploma.project}"</p>
+                <p>${data.diploma.year}</p>
+            `;
+
+            // Focal Points
+            document.getElementById('focal-points').innerHTML = data.focalPoints
+                .map(point => `<li>${point}</li>`)
+                .join('');
+
+            // Qualifications
+            document.getElementById('qualifications').innerHTML = data.qualifications
+                .map(qual => `<li>${qual}</li>`)
+                .join('');
+        }
+
+        // Populate the CV when the page loads
+        document.addEventListener('DOMContentLoaded', () => populateCV(cvData));
+    </script>
+</body>
+</html>
